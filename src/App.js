@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import api from "./services/api";
 
-function App() {
+const nome = prompt("Digite o nome do usuário do github")
+
+export default function App() {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    api
+        .get("/users/" + nome)
+        .then((response) => setUser(response.data))
+        .catch((err) => {
+          console.error("Infelizmente, algo deu errado." + err );
+        });
+  }, []);
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> Aplicativo de requisição a api do github</h1>
+      <p>Usuário: {user?.login}</p>
+      <p>Biografia: {user?.bio}</p>
     </div>
   );
 }
-
-export default App;
