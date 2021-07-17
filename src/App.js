@@ -21,8 +21,14 @@ export default function App() {
   return (
     <div className="App">
       <h1> Aplicativo de requisição a api do github</h1>
-      <p>Usuário: {user?.login}</p>
-      <p>Biografia: {user?.bio}</p>
+      <table border="1">
+        <tr>
+          <td><p>Usuário: {user?.login}</p></td>
+        </tr>
+        <tr>
+        <td><p>Biografia: {user?.bio}</p></td>
+        </tr>
+      </table>
     </div>
   );
 }
